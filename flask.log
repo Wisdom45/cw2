@@ -1,0 +1,11 @@
+2018-12-16 18:22:21,685 - INFO - views.py - index - 17 - BlueRain login the blog.
+2018-12-17 11:15:25,749 - INFO - views.py - comment - 145 - The  "Test" of BlueRain is read by someone.
+2018-12-17 11:17:49,224 - INFO - views.py - comment - 145 - The  "Test" of BlueRain is read by someone.
+2018-12-17 11:23:51,732 - INFO - views.py - comment - 145 - The  "Test" of BlueRain is read by someone.
+2018-12-17 12:18:51,690 - INFO - views.py - comment - 145 - The  "Test" of BlueRain is read by someone.
+2018-12-17 12:40:49,035 - INFO - views.py - comment - 145 - The  "Test" of BlueRain is read by someone.
+2018-12-17 14:14:53,538 - INFO - views.py - index - 17 - BlueRain login the blog.
+2018-12-17 14:14:57,521 - WARNING - views.py - delete_user - 125 - The account of TestAccount is deleted.
+2018-12-17 14:15:00,863 - INFO - views.py - logout - 47 - BlueRain leave the blog.
+2018-12-17 14:15:02,941 - INFO - views.py - login - 34 - BlueRain login the blog.
+2018-12-19 13:43:57,305 - INFO - views.py - comment - 151 - The  "Test" of BlueRain is read by someone.

@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+<table class="users table table-hover">
+  <thead>
+     <tr>
+       <th>User Id</th>
+       <th>User Name</th>
+       <th>User Email</th>
+     </tr>
+   </thead>
+<tbody>
+{% for user in users %}
+<tr class="user">
+<td>{{ user.id }}</td>
+  <td>{{ user.username }}</td>
+  <td>{{ user.email }}</td>
+<td>
+<a href="/delete_user/{{user.id}}"><button type="button" name="button">Delete</button></a>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+
+</table>
+{% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block page_content %}
+{{moment.include_moment()}}
+<div class="post_content">
+    <div class='container'>
+      <div class='row'>
+      <div class='col-md-9 col-md-offset-1'><h3 align="center">Content</h3><p style="text-align:justify">{{ post.body }}</p></div>
+</div>
+</div>
+</div>
+    <table class="post_content table table-hover">
+      <thead>
+         <tr>
+           <th>Comment Time</th>
+           <th>Comment Author</th>
+           <th>Comment Content</th>
+         </tr>
+       </thead>
+        {% for comment in comments %}
+       <tbody>
+         <tr>
+           <td>{{ moment(comment.timestamp).fromNow() }}</td>
+           <td> <a href="/profile/{{comment.author.id}}">
+                  {{ comment.author.username }}
+                  </a></td>
+                  <td>{{ comment.content }}</td>
+                  {% if current_user.can(Permission.MODERATE_COMMENTS) %}
+                  <td><a href="/delete_comment/{{comment.id}}"><button type="button" name="button">Delete</button></a></td>
+                  {% endif %}
+           </tr>
+       </tbody>
+        {% endfor %}
+        </table>
+    <div class="form-header">
+            <h1>Write Comment</h1>
+        </div>
+  <div class="col-md-12">
+   {% if current_user.can(Permission.WRITE_ARTICLES) %}
+   {{ wtf.quick_form(form) }}
+   {% endif %}
+  </div>
+{% endblock %}

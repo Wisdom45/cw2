@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+{{moment.include_moment()}}
+<div class="page-header">
+    <h1>Manage Blogs</h1>
+</div>
+<table class="posts table table-hover">
+  <thead>
+     <tr>
+       <th>Post Time</th>
+       <th>Title</th>
+     </tr>
+   </thead>
+<tbody>
+ {% for post in posts %}
+ <tr class="post-title">
+   <td class="post-date">{{ moment(post.timestamp).fromNow() }}</td>
+ <td class="post-title">
+   <a href="/comment/{{post.id}}">
+   {{ post.title }}
+   </a>
+   </td>
+  <td> <a href="/delete_post/{{post.id}}"><button type="button" name="button">Delete</button></a>
+  <a href="/edit_post/{{post.id}}"><button type="button" name="button">Edit</button></a></td>
+ </tr>
+
+ {% endfor %}
+ </tbody>
+ </table>
+
+{% endblock %}

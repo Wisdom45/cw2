@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+
+{% block page_content %}
+{{moment.include_moment()}}
+<div class="page-header">
+    <h1>Follower Blog</h1>
+</div>
+<table class="posts table table-hover">
+  <thead>
+     <tr>
+       <th>Post Time</th>
+       <th>Author</th>
+       <th>Title</th>
+     </tr>
+   </thead>
+   <tbody>
+ {% for post in posts %}
+ <tr>
+ <td class="post-date">{{ moment(post.timestamp).fromNow() }}</td>
+ <td class="post-author">
+ <a href="/profile/{{post.author.id}}">
+ {{ post.author.username }}
+ </a>
+ </td>
+ <td class="post-title">
+   <a href="/comment/{{post.id}}">
+   {{ post.title }}
+   </a>
+ </td>
+ </tr>
+ {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

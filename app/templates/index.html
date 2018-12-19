@@ -1,0 +1,87 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block page_content %}
+{{moment.include_moment()}}
+{% if current_user.is_authenticated %}
+<div class="page-header">
+    <h1>Hello, {{ current_user.username }}</h1>
+</div>
+<table class="posts table table-hover">
+<thead>
+<tr>
+ <th>Post Time</th>
+ <th>Author</th>
+ <th>Title</th>
+</tr>
+</thead>
+<tbody>
+{% for post in posts %}
+<tr>
+<td class="post-date">{{ moment(post.timestamp).fromNow() }}</td>
+<td class="post-author">
+<a href="/profile/{{post.author.id}}">
+{{ post.author.username }}
+</a>
+</td>
+<td class="post-title">
+<a href="/comment/{{post.id}}">
+{{ post.title }}
+</a>
+</td>
+</tr>
+{% endfor %}
+</tbody>
+</table>
+  {% else %}
+  <div class ='container'>
+    <div class = 'row'>
+      <div class = 'col-md-8'>
+        <div class="page-header">
+            <h1>Welcome to the blog!</h1>
+        </div>
+  <table class="posts table table-hover">
+    <thead>
+       <tr>
+         <th>Post Time</th>
+         <th>Author</th>
+         <th>Title</th>
+       </tr>
+     </thead>
+     <tbody>
+   {% for post in posts %}
+   <tr>
+   <td class="post-date">{{ moment(post.timestamp).fromNow() }}</td>
+   <td class="post-author">
+   <a href="/profile/{{post.author.id}}">
+   {{ post.author.username }}
+   </a>
+   </td>
+   <td class="post-title">
+     <a href="/comment/{{post.id}}">
+     {{ post.title }}
+     </a>
+   </td>
+   </tr>
+   {% endfor %}
+      </tbody>
+  </table>
+  </div>
+  <div class = 'col-md-4'>
+      <div class="page-header">
+          <h1>Login</h1>
+      </div>
+      <div>
+          {{ wtf.quick_form(form) }}
+          <p>
+           New user?
+           <a href="/register">
+           Click here to join us!
+           </a>
+          </p>
+      </div>
+      </div>
+    </div>
+    </div>
+
+{% endif %}
+{% endblock %}

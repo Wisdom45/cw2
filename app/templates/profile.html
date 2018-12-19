@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Blog - {{ user.username }}{% endblock %}
+
+{% block page_content %}
+<div class="profile">
+    <div class="profile-header">
+        <h1>{{ user.username }}</h1>
+            </div>
+        {% if user.name or user.location or user.about_me%}
+        <p>
+            {% if user.name %}Name: {{ user.name }}<br>{% endif %}
+            <br>
+            {% if user.location %}
+                Address: <a href="http://maps.google.com/?q={{ user.location }}">{{ user.location }}</a><br>
+            {% endif %}
+            <br>
+            {% if user.about_me %}<p>Brief Introduction: {{ user.about_me }}.</p>{% endif %}
+        </p>
+          <br>
+          {% else %}
+          {% if user != current_user %}
+                  <p>The user is so lazy that he does not leave anythings!</p>
+          {% else %}
+                  <p>You do not edit your profile, please go to edit it!</p>
+          {% endif %}
+          {% endif %}
+  <p>
+    {% if current_user.can(Permission.FOLLOW) and user != current_user %}
+        {% if not current_user.is_following(user) %}
+        <a href="/follow/{{user.id}}" class="btn btn-primary">Follow</a>
+        {% else %}
+        <a href="/unfollow/{{user.id}}" class="btn btn-default">Unfollow</a>
+        {% endif %}
+    {% endif %}
+    {% if current_user.is_authenticated and user != current_user and user.is_following(current_user) %}
+    | <span class="label label-default">Follows you</span>
+    {% endif %}
+</p>
+</div>
+{% endblock %}
